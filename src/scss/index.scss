@@ -1,0 +1,37 @@
+.presentation {
+  display: flex;
+  position: relative;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+
+  &__text {
+    position: absolute;
+  }
+
+  &__images {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    img {
+      min-width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+
+      scroll-snap-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .presentation {
+    flex-direction: row;
+    align-items: center;
+    &__text {
+      margin-bottom: 20px;
+    }
+  }
+}

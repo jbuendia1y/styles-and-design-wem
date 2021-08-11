@@ -1,0 +1,26 @@
+.main-footer {
+  background-color: $secondary-bg;
+  color: $text;
+  padding: 10px 0;
+  margin-top: 15px;
+
+  &__link {
+    svg {
+      max-width: 35px;
+      max-height: 35px;
+      background-color: white;
+      color: blue;
+      clip-path: polygon(9% 8%, 91% 9%, 90% 91%, 8% 92%);
+    }
+  }
+
+  .info {
+    &-key {
+      font-weight: bold;
+    }
+  }
+
+  .socials {
+    text-align: right;
+  }
+}

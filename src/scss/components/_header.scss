@@ -1,0 +1,33 @@
+.main-header {
+  background-color: $primary-bg;
+  color: $text;
+
+  box-shadow: 0 3px 1em rgba(56, 56, 56, 0.582);
+  position: relative;
+  z-index: 2;
+
+  height: 70px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__logo {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  &__rigth {
+    display: flex;
+    align-items: center;
+  }
+
+  &__phone {
+    max-width: 35px;
+    max-height: 35px;
+    margin-right: 2.5px;
+  }
+}

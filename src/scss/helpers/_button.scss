@@ -1,0 +1,11 @@
+@mixin resetButton {
+  background: none;
+  color: none;
+  border: none;
+}
+
+@mixin button {
+  background-color: $primary-bg;
+  color: $text;
+  padding: 10px 5px;
+}

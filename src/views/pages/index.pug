@@ -1,0 +1,24 @@
+extends ../layouts/main.pug
+
+block head 
+    link(rel="stylesheet", href="/css/index.css")
+    meta(property="og:title",content="Estilos & Diseños WEM")
+    meta(property="og:description",content="Estilos & Diseños WEM")
+    meta(property="og:image",content="/assets/images/logo.png")
+block content
+    main
+        .presentation
+            .presentation__text.container
+                h1 Estilos & Diseños WEM
+                p Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ad qui laudantium consectetur et quo id sunt nihil atque commodi ea, accusamus aut iusto ex. Perferendis optio repellendus quo aperiam!
+            .presentation__images
+                each item in main_data
+                    img(data-src=item,loading="lazy")
+    section.sites 
+        h2 Muebles
+        article 
+            h1 Muebles para Baños
+            p 
+block scripts 
+    script(src="/js/index.js") 
+    script(src="/js/lazy-images.js") 

@@ -1,0 +1,20 @@
+@import "./constants";
+@import "./components/header";
+@import "./components/nav";
+@import "./components/footer";
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 95%;
+  margin: 0 auto;
+
+  max-width: 1250px;
+}
