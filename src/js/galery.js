@@ -119,31 +119,6 @@ function createButtonWithImg(url) {
           data: imagesURL,
           current_index,
         });
-        /* if (direction === "left") {
-          if (current_index === 1) {
-            const index = imagesURL.length - 1;
-            actual_imageEl.src = imagesURL[index];
-            actual_imageEl.alt = templateAltPreview(
-              imagesURL.length,
-              imagesURL.length
-            );
-          } else {
-            const index = current_index - 1;
-            actual_imageEl.src = imagesURL[index];
-            actual_imageEl.alt = templateAltPreview(index, imagesURL.length);
-          }
-        } else {
-          if (current_index === max_index) {
-            actual_imageEl.src = imagesURL[0];
-            actual_imageEl.alt = templateAltPreview(1, imagesURL.length);
-          } else {
-            actual_imageEl.src = imagesURL[current_index + 1];
-            actual_imageEl.alt = templateAltPreview(
-              current_index + 1,
-              imagesURL.length
-            );
-          }
-        } */
       }
     });
     window.addEventListener("click", (e) => {

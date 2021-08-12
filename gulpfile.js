@@ -31,7 +31,7 @@ gulp.task("images", () => {
     .src([base + "/*", base + "/**/*"])
     .pipe(
       imagemin([
-        imagemin.mozjpeg({ quality: 75, progressive: true }),
+        imagemin.mozjpeg({ quality: 70, progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
       ])
     )
@@ -71,6 +71,7 @@ gulp.task("default", () => {
     server: {
       baseDir: DIST_DIR,
     },
+    ghostMode: false,
   });
 
   gulp.watch(VIEWS_DIR, gulp.series("views")).on("change", server.reload);
