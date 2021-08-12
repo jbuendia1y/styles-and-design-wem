@@ -13,12 +13,14 @@ block content
                 p Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse ad qui laudantium consectetur et quo id sunt nihil atque commodi ea, accusamus aut iusto ex. Perferendis optio repellendus quo aperiam!
             .presentation__images
                 each item in main_data
-                    img(data-src=item,loading="lazy")
+                    -const lista = item.split("/")
+                    img(data-src=item,alt=lista[lista.length - 1].split(".")[0],loading="lazy")
     section.sites 
         h2 Muebles
         article 
             h1 Muebles para Baños
             p 
+    section.works
 block scripts 
     script(src="/js/index.js") 
     script(src="/js/lazy-images.js") 

@@ -207,7 +207,7 @@ function createButtonWithImg(url) {
 
       // Adding Image
       const img = document.createElement("img");
-      img.src = `assets/images/data/${folder}/${item}/${folder_childs[item][0]}`;
+      img.src = `${folder_childs[item][0]}`;
       img.alt = `${folder} ${item} ${folder_childs[item][0]}`;
       fragment_images.append(img);
 
@@ -227,8 +227,8 @@ function createButtonWithImg(url) {
 
   const clearSection = () => {
     const childs = document.querySelector("section#folders").children;
-    for (const child of childs) {
-      child.remove();
+    for (let i = 0; i <= childs.length; i++) {
+      childs[i].remove();
     }
   };
 
