@@ -1,26 +1,22 @@
+function setCurrentWidth() {
+  const slider = window.document.querySelector("div.presentation__images");
+  const widthBody = parseInt(slider.querySelector("img").width);
+  const n = (40 / 100) * widthBody;
+  return parseInt(widthBody + n);
+}
+
 (function () {
-  const slider = document.querySelector("div.presentation__images");
-  let returned = false;
+  let currentWidth = setCurrentWidth();
+
+  window.addEventListener("resize", () => {
+    currentWidth = setCurrentWidth();
+  });
+
   setInterval(() => {
-    if (returned) {
-      if (slider.scrollLeft < 250) returned = false;
-      slider.scroll({
-        behavior: "smooth",
-        left: slider.scrollLeft - 250,
-      });
-    } else {
-      if (slider.scrollLeft > 1000) {
-        returned = true;
-        slider.scroll({
-          behavior: "smooth",
-          left: slider.scrollLeft - 250,
-        });
-      } else {
-        slider.scroll({
-          behavior: "smooth",
-          left: slider.scrollLeft + 250,
-        });
-      }
-    }
-  }, 5000);
+    const slider = document.querySelector("div.presentation__images");
+    const maxWidth = slider.querySelector("img").width * 3;
+    console.log(maxWidth - 100 <= slider.scrollLeft);
+    if (maxWidth - 100 <= slider.scrollLeft) slider.scrollLeft = 0;
+    else slider.scrollLeft += currentWidth;
+  }, 4500);
 })();

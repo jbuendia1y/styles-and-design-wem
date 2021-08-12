@@ -15,6 +15,11 @@
 
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    touch-action: none;
+    cursor: default;
 
     img {
       min-width: 100%;
