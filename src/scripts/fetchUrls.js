@@ -37,30 +37,16 @@ const galeryImages = async () => {
 };
 
 async function fetchURLS() {
-  /* const data = {};
+  const data = [];
 
-  const base = [__dirname, "../assets/images/data"];
-  fs.readdirSync(path.join(...base)).map((folder) => {
-    data[folder] = {};
-    fs.readdirSync(path.join(...base, "/" + folder)).map((folder2) => {
-      data[folder][folder2] = [];
-
-      fs.readdirSync(path.join(...base, "/" + folder + "/" + folder2)).map(
-        (file) => {
-          data[folder][folder2].push(file);
-        }
-      );
-    });
-  }); */
+  const base = [__dirname, "../assets/images/main"];
+  fs.readdirSync(path.join(...base)).map((image) => {
+    data.push("assets/images/main/" + image);
+  });
 
   const galery = await galeryImages();
   const finish = {
-    main_data: [
-      "assets/images/main/bar.jpg",
-      "assets/images/main/entertainment.jpg",
-      "assets/images/main/closet.jpg",
-      "assets/images/main/kitchen.jpg",
-    ],
+    main_data: data,
     galery: galery.galery,
   };
 

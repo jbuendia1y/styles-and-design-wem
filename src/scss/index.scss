@@ -1,42 +1,71 @@
+@import "./constants";
+
 .presentation {
   display: flex;
-  position: relative;
-  flex-direction: column-reverse;
-  justify-content: space-between;
+  height: 400px;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; // scrollbar hidden FireFox
 
-  &__text {
-    position: absolute;
+  touch-action: none;
+  cursor: default;
+
+  &__box {
+    position: relative;
+    overflow: hidden;
+    min-width: 100%;
+    width: 100%;
+    scroll-snap-align: center;
+
+    &::before {
+      content: "";
+      position: absolute;
+      max-width: 250px;
+      width: 50%;
+      height: 100%;
+
+      background-color: $primary-dark;
+      clip-path: polygon(0 100%, 100% 100%, 25% 0, 0 0);
+    }
   }
 
-  &__images {
-    display: flex;
-    height: 100%;
+  &__image {
+    height: 400px;
     width: 100%;
+    object-fit: cover;
+  }
 
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
+  /* scrollbar hidden Google-Chrome and others */
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-track {
+    width: 0;
+    display: none;
+  }
 
-    touch-action: none;
-    cursor: default;
+  &__title {
+    position: absolute;
+    width: 100%;
+    top: 25%;
 
-    img {
-      min-width: 100%;
-      max-height: 400px;
-      object-fit: cover;
+    color: $text;
+    font-size: 35px;
 
-      scroll-snap-align: center;
+    text-shadow: 1.25px 1.25px 2px black;
+    padding-left: 15px;
+    &-block {
+      display: block;
+      font-weight: bold;
     }
   }
 }
 
 @media screen and (min-width: 900px) {
   .presentation {
-    flex-direction: row;
-    align-items: center;
-    &__text {
-      margin-bottom: 20px;
+    &__title {
+      font-size: 40px;
     }
   }
 }
