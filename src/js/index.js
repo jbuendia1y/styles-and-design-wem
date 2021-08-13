@@ -1,7 +1,7 @@
 function setCurrentWidth() {
-  const slider = window.document.querySelector("div.presentation__images");
+  const slider = window.document.querySelector("div.presentation");
   const widthBody = parseInt(slider.querySelector("img").width);
-  const n = (40 / 100) * widthBody;
+  const n = (45 / 100) * widthBody;
   return parseInt(widthBody + n);
 }
 
@@ -13,10 +13,13 @@ function setCurrentWidth() {
   });
 
   setInterval(() => {
-    const slider = document.querySelector("div.presentation__images");
-    const maxWidth = slider.querySelector("img").width * 3;
+    const slider = document.querySelector("div.presentation");
+    const maxWidth =
+      slider.querySelector("img").width *
+      (slider.querySelectorAll("img").length - 1);
     console.log(maxWidth - 100 <= slider.scrollLeft);
-    if (maxWidth - 100 <= slider.scrollLeft) slider.scrollLeft = 0;
+
+    if (maxWidth === slider.scrollLeft) slider.scrollLeft = 0;
     else slider.scrollLeft += currentWidth;
   }, 4500);
 })();
