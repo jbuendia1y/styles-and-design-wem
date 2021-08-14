@@ -1,10 +1,8 @@
 extends ../layouts/main.pug
 
-block head 
+block prepend head 
+    -const headDescription = "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad"
     link(rel="stylesheet", href="/css/index.css")
-    meta(property="og:title",content="Estilos & Diseños WEM")
-    meta(property="og:description",content="Estilos & Diseños WEM")
-    meta(property="og:image",content="/assets/images/logo.png")
 block content
     main
         .presentation

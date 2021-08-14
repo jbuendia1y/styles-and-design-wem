@@ -3,40 +3,14 @@
 @import "./helpers/button";
 
 .galery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  gap: 10px 10px;
   margin-top: 15px;
-
-  &__filter {
-    display: flex;
-    justify-content: space-evenly;
-  }
-}
-
-.form-control {
-  width: 250px;
-
-  &:nth-child(2) {
-    margin-left: 20px;
-  }
 }
 
 .folder {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
-  column-gap: 30px;
-  margin: 0 auto;
-
-  &-slider {
-    display: flex;
-    height: 200px;
-    width: 300px;
-    position: relative;
-
-    img {
-      width: 300px;
-      object-fit: cover;
-    }
-  }
-
   &__button {
     position: absolute;
     bottom: 0;
@@ -68,6 +42,18 @@
   &-box {
     display: flex;
     flex-direction: column;
+
+    height: 200px;
+    width: 100%;
+    position: relative;
+
+    overflow: hidden;
+    box-shadow: 1px 1px 1.8px black;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
   }
 }
 

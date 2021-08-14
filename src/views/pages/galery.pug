@@ -1,35 +1,19 @@
 extends ../layouts/main.pug
 
-block head 
+block prepend head 
+    -const headTitle = "Galery"
+    -const headDescription = "Galería de Fotos \n Fotos de trabajos realizados"
     link(rel="stylesheet", href="/css/galery.css")
 
 block content 
     main.container.galery 
-        .galery__filter
-            .form-control 
-                label(for="materials") Materials 
-                select#materials(name="material")
-                    option(value="__all__",default) ...
-            .form-control
-                label(for="sites") Sites 
-                select#sites(name="site")
-                    option(value="__all__",default) ...
-        section#folders
-            each mainFolder in Object.keys(galery) 
-                .box
-                    h2=mainFolder
-                    .folder
-                        each folder in Object.keys(galery[mainFolder])
-                            .folder-box
-                                h3.folder__child=folder
-                                div.folder-slider 
-                                    if galery[mainFolder][folder].length !== 0
-                                        button.folder__button(type="button",data-folder=mainFolder,data-site=folder)
-                                            svg 
-                                                use(xlink:href="assets/images/icons/search-plus.svg#img")
-                                        img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
-                                    else 
-                                        p(style="display:inline;") Image Not Found
+        each mainFolder in Object.keys(galery)
+            each folder in Object.keys(galery[mainFolder])
+                .folder-box
+                    button.folder__button(type="button",data-folder=mainFolder,data-site=folder)
+                        svg 
+                            use(xlink:href="assets/images/icons/search-plus.svg#img")
+                    img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
 
 block scripts 
     script(src="/js/galery.js")

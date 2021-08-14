@@ -1,3 +1,0 @@
----
-title: "Muebles para Baño"
----

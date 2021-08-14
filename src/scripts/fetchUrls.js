@@ -6,6 +6,14 @@ const cloudinary = require("./cloudinary-api");
 // const company = "styles-and-designs-wem";
 
 const galeryImages = async () => {
+  const JSON_DIR = path.join(__dirname, "../../dist/assets/data.json");
+
+  if (fs.existsSync(JSON_DIR)) {
+    const json_data = fs.readFileSync(JSON_DIR, "utf-8");
+    const cache_data = JSON.parse(json_data.toString());
+    return cache_data;
+  }
+
   const data = await cloudinary.search
     .expression('resource_type:image AND folder:"styles-and-designs-wem/*"')
     .max_results(10000)
@@ -63,7 +71,7 @@ async function fetchURLS() {
   return finish;
 }
 
-module.exports = fetchURLS();
+module.exports = fetchURLS;
 /* 
 
 {
