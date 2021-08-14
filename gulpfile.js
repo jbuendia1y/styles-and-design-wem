@@ -13,9 +13,9 @@ const {
 } = require("./constans");
 
 gulp.task("views", async () => {
-  const indexData = await require("./index");
+  const indexData = await require("./index")();
   return gulp
-    .src("./src/views/pages/*.pug")
+    .src(["./src/views/pages/*.pug", "./src/views/pages/**/*.pug"])
     .pipe(
       pug({
         pretty: false,
@@ -59,11 +59,22 @@ gulp.task("sass", () => {
     .pipe(gulp.dest(DIST_DIR + "/css"));
 });
 
+gulp.task("create-furnitures-pages", async () => {
+  await require("./src/scripts/create-one-page-per-furniture")();
+});
+
 function compileAll() {
-  return gulp.series(gulp.parallel(["images", "js"]), ["views", "sass"]);
+  return gulp.series(
+    "create-furnitures-pages",
+    "images",
+    "js",
+    "sass",
+    "views"
+  );
 }
 
-gulp.task("default", () => {
+gulp.task("default", async () => {
+  await require("./src/scripts/create-one-page-per-furniture")();
   gulp.task("caller", compileAll());
 
   const server = require("browser-sync").create();

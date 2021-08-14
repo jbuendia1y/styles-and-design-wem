@@ -1,0 +1,32 @@
+extends ./main.pug
+
+block head 
+    link(rel="stylesheet", href="/css/furniture.css")
+
+block content 
+    main.container.furniture
+        h1=title
+        p !{description}
+    section.container.miniGalery
+        - const parentFolder = imagesDir.split("/")[0]
+        - const childFolder = imagesDir.split("/")[1]
+        - const lista = galery[parentFolder][childFolder]
+        - let start = 0
+        - const data = []
+        - let stop = 0
+        if lista.length > 6 
+            - stop = 6 
+        else 
+            - stop = lista.length
+        while start < stop
+            - data.push(start) 
+            - ++start
+        
+        each i in data
+            -const n =  Math.floor(Math.random()*lista.length)
+            -const image = lista.splice(n,1)[0]
+            img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
+
+block scripts 
+    script(src="/js/lazy-images.js")
+    script(src="/js/furniture.js")

@@ -1,6 +1,8 @@
 extends ../layouts/main.pug
 
-block head 
+block prepend head 
+    -const headTitle = "About"
+    -const headDescription = "Quienes somos?"
     link(rel="stylesheet", href="/css/about.css")
 
 block content 

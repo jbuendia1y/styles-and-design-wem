@@ -3,4 +3,6 @@ dist
 docs
 .env
 
+src/views/pages/furnitures/*
+
 package-lock.json
