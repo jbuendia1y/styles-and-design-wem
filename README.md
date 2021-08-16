@@ -18,10 +18,10 @@ Los archivos de cloudinary tienen que estar una carpeta **`styles-and-designs-we
 
 ```
 styles-and-designs-wem
-    |   type-material
-    |   |   type-furniture
-    |   |   |   text.json
-    |   |   ... images.jpg ...
+|   type-material
+|   |   type-furniture
+|   |   |   text.json
+|   |   ... images.jpg ...
 ```
 
 ### Content of .JSON
@@ -29,6 +29,7 @@ styles-and-designs-wem
 ```json
 {
   "title": "TITLE OF PAGE",
-  "description": "DESCRIPTION OF PAGE"
+  "description": "DESCRIPTION OF PAGE",
+  "image": "URL OF IMAGE,FOR PAGE"
 }
 ```
