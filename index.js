@@ -1,3 +1,3 @@
 const fetchUrls = require("./src/scripts/fetchUrls");
-
-module.exports = fetchUrls;
+const pages = require("./src/scripts/create-one-page-per-furniture");
+module.exports = { fetchUrls, pages };

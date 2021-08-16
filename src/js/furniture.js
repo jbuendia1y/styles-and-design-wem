@@ -1,7 +1,4 @@
 (function () {
-  fetch("http://localhost:3000/assets/data.json")
-    .then((res) => res.json())
-    .then((data) => console.log(data.galery["Melamine"]["Baño"]));
   const viewFullImage = (image) => {
     const container = document.createElement("div"),
       box = document.createElement("div");
@@ -29,9 +26,6 @@
 
   const galery = document.querySelector("section.miniGalery");
   galery.addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG") {
-      console.log("a");
-      viewFullImage(e.target);
-    }
+    if (e.target.tagName === "IMG") viewFullImage(e.target);
   });
 })();

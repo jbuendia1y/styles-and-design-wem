@@ -17,7 +17,6 @@ function setCurrentWidth() {
     const maxWidth =
       slider.querySelector("img").width *
       (slider.querySelectorAll("img").length - 1);
-    console.log(maxWidth - 100 <= slider.scrollLeft);
 
     if (maxWidth === slider.scrollLeft) slider.scrollLeft = 0;
     else slider.scrollLeft += currentWidth;

@@ -67,7 +67,6 @@ async function fetchURLS() {
     fs.mkdirSync(PARENT_DIR, { recursive: true });
     fs.writeFileSync(JSON_DIR, JSON.stringify(finish));
   }
-  // console.log(finish);
   return finish;
 }
 

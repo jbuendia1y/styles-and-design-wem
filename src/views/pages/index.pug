@@ -1,7 +1,10 @@
 extends ../layouts/main.pug
+include ../components/card-article.pug
 
 block prepend head 
-    -const headDescription = "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad"
+    +metaData({
+        description : "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad"
+    })
     link(rel="stylesheet", href="/css/index.css")
 block content
     main
@@ -13,11 +16,11 @@ block content
                     img.presentation__image(data-src=item,alt=nameSite.split(".")[0],loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{nameSite}
-    section.container.sites 
-        h2 Muebles
-        article 
-            h1 Muebles para Baños
-            p 
+    section.container.furnitures
+        h2.furnitures__title#variedad-de-muebles Variedad de Muebles
+        .furnitures__box
+            each page in pages 
+                +cardArticle(page)
     section.works
 block scripts 
     script(src="/js/index.js") 

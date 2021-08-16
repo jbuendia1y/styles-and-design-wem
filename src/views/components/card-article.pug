@@ -1,0 +1,10 @@
+mixin cardArticle({title,description,image,link})
+    article.cardArticle
+        header.cardArticle__header
+            h3.cardArticle__title=title 
+            p.cardArticle__description !{description} 
+        figure.cardArticle__box 
+            img.cardArticle__image(src=image ? image : "https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI", alt=image ? title : "Image cannot Found")
+        a.cardArticle__link(href=link) 
+            span=title
+        
