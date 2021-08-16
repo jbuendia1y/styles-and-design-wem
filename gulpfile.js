@@ -13,13 +13,15 @@ const {
 } = require("./constans");
 
 gulp.task("views", async () => {
-  const indexData = await require("./index")();
+  const indexData = await require("./index").fetchUrls();
+  const pages = await require("./index").pages();
+
   return gulp
     .src(["./src/views/pages/*.pug", "./src/views/pages/**/*.pug"])
     .pipe(
       pug({
         pretty: false,
-        data: { ...indexData },
+        data: { ...indexData, ...pages },
       })
     )
     .pipe(gulp.dest(DIST_DIR));

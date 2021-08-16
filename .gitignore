@@ -1,8 +1,12 @@
-node_modules
+# Base
 dist
 docs
 .env
 
+# Generate by scripts
 src/views/pages/furnitures/*
+src/scripts/*.json
 
+# Node
+node_modules
 package-lock.json

@@ -7,11 +7,13 @@ const cloudinary = require("./cloudinary-api");
 const generateTemplate = (
   title,
   description,
-  imagesDir
+  imagesDir,
+  mainImage
 ) => `extends ../../layouts/furniture.pug
 block prepend head
   -const headTitle = "${title}"
   -const headDescription = "${description}"
+  -const image="${mainImage}"
 block prepend content
   -const title="${title}"
   -const description="${description}"
@@ -19,20 +21,27 @@ block prepend content
 `;
 
 async function MakeFiles() {
-  const dirBase = path.join(__dirname, "../views/pages/furnitures/");
-  if (fs.existsSync(dirBase)) return;
+  const cacheDataDir = path.join(__dirname, "./pages.json");
+  const dirBase = path.join(__dirname, "../views/pages/furnitures");
+  if (fs.existsSync(cacheDataDir)) {
+    const cacheData = fs.readFileSync(cacheDataDir, "utf-8");
+    return JSON.parse(cacheData.toString());
+  }
   const data = await cloudinary.search
     .expression('format:json AND folder:"styles-and-designs-wem/*"')
     .max_results(100)
     .execute();
 
   if (fs.existsSync(dirBase)) {
-    fs.rmdirSync(dirBase);
+    fs.rm(dirBase, { recursive: true });
     fs.mkdirSync(dirBase, { recursive: true });
   } else fs.mkdirSync(dirBase, { recursive: true });
+
+  const pages = [];
+
   for (const item of data.resources) {
-    const { title, description } = await fetch(item.secure_url).then((res) =>
-      res.json()
+    const { title, description, image } = await fetch(item.secure_url).then(
+      (res) => res.json()
     );
     const base = path.join(
       __dirname,
@@ -43,9 +52,19 @@ async function MakeFiles() {
     const folder = item.folder.split("/");
     folder.shift();
     const imagesDir = folder.join("/");
-
-    fs.writeFileSync(base, generateTemplate(title, description, imagesDir));
+    const link = base.split("/views/pages")[1].split(".")[0] + ".html";
+    pages.push({
+      title,
+      description,
+      link,
+      image,
+    });
+    fs.writeFileSync(
+      base,
+      generateTemplate(title, description, imagesDir, image)
+    );
   }
+  fs.writeFileSync(cacheDataDir, JSON.stringify({ pages }));
 }
 
 module.exports = MakeFiles;

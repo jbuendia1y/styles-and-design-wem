@@ -102,6 +102,8 @@
   img {
     position: relative;
     z-index: 4;
+
+    filter: invert(1);
   }
 
   &:nth-child(1) {
