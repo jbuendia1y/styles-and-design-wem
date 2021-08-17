@@ -1,9 +1,22 @@
 extends ../layouts/main.pug
 include ../components/card-article.pug
 
+mixin worksGalery
+    - const worksImagesGalery = []
+    each folder in Object.keys(galery)
+        each folderChild in Object.keys(galery[folder])
+            - const n = Math.floor(Math.random() * galery[folder][folderChild].length)
+            - const index = n + 1
+            - worksImagesGalery.push({image : galery[folder][folderChild][n],alt :"Trabajo realizado Nº " + index + " de la galería"})
+
+    each item in worksImagesGalery 
+        img.works__image(src=item.image,alt=item.alt)
+
+
 block prepend head 
     +metaData({
-        description : "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad"
+        description : "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad",
+        image: main_data[0]
     })
     link(rel="stylesheet", href="/css/index.css")
 block content
@@ -21,7 +34,13 @@ block content
         .furnitures__box
             each page in pages 
                 +cardArticle(page)
-    section.works
+    section.container.works
+        h2.works__title Trabajos Realizados
+        .works__box
+            .works-grid
+                +worksGalery()
+            a.works__button(href="/galery.html") Ver más
+
 block scripts 
     script(src="/js/index.js") 
     script(src="/js/lazy-images.js") 

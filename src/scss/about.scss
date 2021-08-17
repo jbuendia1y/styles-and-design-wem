@@ -1,4 +1,7 @@
 .about {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 
   &__paragraph {
@@ -6,11 +9,18 @@
       display: block;
     }
   }
+
+  &__map {
+    display: block;
+    margin: 0 auto;
+
+    max-width: 100%;
+  }
 }
 
-.map {
-  display: block;
-  margin: 0 auto;
-
-  max-width: 100%;
+@media screen and (min-width: 900px) {
+  .about {
+    flex-direction: row;
+    align-items: center;
+  }
 }

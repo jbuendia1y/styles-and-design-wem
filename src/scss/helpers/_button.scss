@@ -2,10 +2,13 @@
   background: none;
   color: none;
   border: none;
+  text-decoration: none;
+  display: inline-block;
 }
 
 @mixin button {
   background-color: $primary-bg;
   color: $text;
-  padding: 10px 5px;
+  padding: 10px 12.5px;
+  border-radius: 4px;
 }

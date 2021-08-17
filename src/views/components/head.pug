@@ -1,8 +1,13 @@
-mixin metaData({title,description})
+mixin metaData({title,description,image})
     meta(name="title",content=title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM")
-    meta(name="description",content=description)
     meta(property="og:title",content=title)
-    meta(property="og:description",content=description)
+
+    if description 
+        meta(name="description",content=description)
+        meta(property="og:description",content=description)
+    if image
+        meta(property="og:image",content=image)
+        
     title #{title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM"}
 
 doctype html
