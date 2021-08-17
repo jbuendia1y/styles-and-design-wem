@@ -1,8 +1,10 @@
 extends ../layouts/main.pug
 
 block prepend head 
-    -const headTitle = "Galery"
-    -const headDescription = "Galería de Fotos \n Fotos de trabajos realizados"
+    +metaData({
+        title: "Galery",
+        description : "Galería de Fotos \n Fotos de trabajos realizados"
+    })
     link(rel="stylesheet", href="/css/galery.css")
 
 block content 

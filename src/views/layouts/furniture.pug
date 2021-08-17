@@ -18,11 +18,13 @@ mixin makeMiniGalery(directory)
     each i in data
         -const n =  Math.floor(Math.random()*lista.length)
         -const image = lista.splice(n,1)[0]
-        img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
+        .miniGalery__item
+            img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
 
 
 block head 
     link(rel="stylesheet", href="/css/furniture.css")
+    +metaData({title:headTitle,description:headDescription,image:image})
 
 block content 
     main.furniture
@@ -31,9 +33,9 @@ block content
             .furniture__text
                 h1.furniture__title=title
                 p.furniture__description !{description}
-    section.container
-        h2 Galería
-        .miniGalery
+    section.container.miniGalery
+        h2.miniGalery__title Galería
+        .miniGalery-grid
             +makeMiniGalery(imagesDir)
 block scripts 
     script(src="/js/lazy-images.js")

@@ -24,7 +24,7 @@
     }, 500);
   };
 
-  const galery = document.querySelector("div.miniGalery");
+  const galery = document.querySelector("section.miniGalery");
   galery.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") viewFullImage(e.target);
   });
