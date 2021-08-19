@@ -62,7 +62,7 @@ gulp.task("sass", () => {
 });
 
 gulp.task("create-furnitures-pages", async () => {
-  await require("./src/scripts/create-one-page-per-furniture")();
+  await require("./scripts/create-one-page-per-furniture")();
 });
 
 function compileAll() {
@@ -76,7 +76,7 @@ function compileAll() {
 }
 
 gulp.task("default", async () => {
-  await require("./src/scripts/create-one-page-per-furniture")();
+  await require("./scripts/create-one-page-per-furniture")();
   gulp.task("caller", compileAll());
 
   const server = require("browser-sync").create();

@@ -30,6 +30,10 @@
     color: $primary-light;
     font-weight: bold;
     margin-top: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__box {

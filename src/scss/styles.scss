@@ -15,6 +15,12 @@ ul {
   margin: 0;
 }
 
+.text {
+  &-center {
+    text-align: center;
+  }
+}
+
 .container {
   width: 95%;
   margin: 0 auto;

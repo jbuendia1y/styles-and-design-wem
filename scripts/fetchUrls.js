@@ -1,12 +1,28 @@
 const fs = require("fs");
 const path = require("path");
-
+const fetch = require("node-fetch");
 const cloudinary = require("./cloudinary-api");
 
 // const company = "styles-and-designs-wem";
 
+const mainImages = async () => {
+  const JSON_DIR = path.join(__dirname, "../dist/assets/data.json");
+  if (fs.existsSync(JSON_DIR)) {
+    return JSON.parse(fs.readFileSync(JSON_DIR, "utf-8").toString());
+  }
+  const file = await cloudinary.search
+    .expression(
+      'format:json AND filename:"main" AND folder:"styles-and-designs-wem/*"'
+    )
+    .max_results(1)
+    .execute();
+  const url = file.resources[0].secure_url;
+  const data = await fetch(url).then((res) => res.json());
+  return data;
+};
+
 const galeryImages = async () => {
-  const JSON_DIR = path.join(__dirname, "../../dist/assets/data.json");
+  const JSON_DIR = path.join(__dirname, "../dist/assets/data.json");
 
   if (fs.existsSync(JSON_DIR)) {
     const json_data = fs.readFileSync(JSON_DIR, "utf-8");
@@ -45,21 +61,18 @@ const galeryImages = async () => {
 };
 
 async function fetchURLS() {
-  const data = [];
-
-  const base = [__dirname, "../assets/images/main"];
-  fs.readdirSync(path.join(...base)).map((image) => {
-    data.push("assets/images/main/" + image);
-  });
-
+  const JSON_DIR = path.join(__dirname, "../dist/assets/data.json");
+  const PARENT_DIR = path.join(__dirname, "../dist/assets");
+  if (fs.existsSync(JSON_DIR)) {
+    return JSON.parse(fs.readFileSync(JSON_DIR, "utf-8").toString());
+  }
   const galery = await galeryImages();
+  const main_data = await mainImages();
   const finish = {
-    main_data: data,
+    main_data,
     galery: galery.galery,
   };
 
-  const JSON_DIR = path.join(__dirname, "../../dist/assets/data.json");
-  const PARENT_DIR = path.join(__dirname, "../../dist/assets");
   if (fs.existsSync(JSON_DIR)) {
     fs.rmSync(JSON_DIR);
     fs.writeFileSync(JSON_DIR, JSON.stringify(finish));

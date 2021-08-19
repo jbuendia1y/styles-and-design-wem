@@ -18,18 +18,32 @@ Los archivos de cloudinary tienen que estar una carpeta **`styles-and-designs-we
 
 ```
 styles-and-designs-wem
+|   main.json
 |   type-material
 |   |   type-furniture
-|   |   |   text.json
+|   |   |   any-name.md
 |   |   ... images.jpg ...
 ```
 
-### Content of .JSON
+### Contenido del `main.json`
 
 ```json
-{
-  "title": "TITLE OF PAGE",
-  "description": "DESCRIPTION OF PAGE",
-  "image": "URL OF IMAGE,FOR PAGE"
-}
+[
+  {
+    "image": "URL OF IMAGE",
+    "title": "NAME OF IMAGE"
+  }
+]
+```
+
+### Contenido del .MD
+
+```md
+---
+title: "Titulo para la página de mueble"
+description: "Descripción para la página de mueble"
+image: "Imagen principal para la página de mueble"
+---
+
+Texto opcional para la página , después de los metadatos
 ```

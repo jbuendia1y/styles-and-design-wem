@@ -4,66 +4,85 @@ const path = require("path");
 const fetch = require("node-fetch").default;
 const cloudinary = require("./cloudinary-api");
 
-const generateTemplate = (
+const generateTemplate = ({
   title,
   description,
+  image,
   imagesDir,
-  mainImage
-) => `extends ../../layouts/furniture.pug
+  content,
+}) => `extends ../../layouts/furniture.pug
 block prepend head
-  -const headTitle = "${title}"
-  -const headDescription = "${description}"
-  -const image="${mainImage}"
+  +metaData({title:"${title}",description:"${description}",image:"${image}",keywords:["muebles","${title}","estilos","diseños","wem"]})
 block prepend content
   -const title="${title}"
   -const description="${description}"
   -const imagesDir="${imagesDir}"
+  -const image="${image}"
+  -const _content="${content}"
 `;
+
+const fetchMarkdown = async () => {
+  const matter = require("gray-matter");
+  const pages = [];
+  const files = await cloudinary.search
+    .expression('format:md AND folder:"styles-and-designs-wem/*"')
+    .max_results(100)
+    .execute();
+
+  const urls = files.resources.map((item) => {
+    return { url: item.secure_url, folder: item.folder };
+  });
+  for (const { url, folder } of urls) {
+    const markdown = await fetch(url)
+      .then((res) => res.blob())
+      .then((md) => md.text())
+      .then((data) => data);
+    const imagesDir = folder.split("styles-and-designs-wem/")[1];
+    const { content, data } = matter(markdown);
+
+    const fileName = data.title.split(" ").join("-").toLowerCase() + ".pug";
+    const pagePugDir = path.join(
+      __dirname,
+      "../src/views/pages/furnitures/" + fileName
+    );
+
+    const pugTemplate = generateTemplate({
+      ...data,
+      imagesDir,
+      content: content.trim(),
+    });
+    pages.push({
+      title: data.title,
+      description: data.description,
+      image: data.image,
+      link: "/furnitures/" + fileName.replace(".pug", ".html"),
+    });
+    console.log("✅ Created file " + fileName);
+    fs.writeFileSync(pagePugDir, pugTemplate, { encoding: "utf-8" });
+  }
+
+  return pages;
+};
 
 async function MakeFiles() {
   const cacheDataDir = path.join(__dirname, "./pages.json");
-  const dirBase = path.join(__dirname, "../views/pages/furnitures");
+  const dirBase = path.join(__dirname, "../src/views/pages/furnitures");
   if (fs.existsSync(cacheDataDir)) {
     const cacheData = fs.readFileSync(cacheDataDir, "utf-8");
     return JSON.parse(cacheData.toString());
   }
-  const data = await cloudinary.search
-    .expression('format:json AND folder:"styles-and-designs-wem/*"')
-    .max_results(100)
-    .execute();
-
   if (fs.existsSync(dirBase)) {
-    fs.rm(dirBase, { recursive: true });
+    fs.rm(dirBase, { recursive: true }, (err) => {
+      if (err) return console.log(err.message);
+      else {
+        console.log("remove " + dirBase);
+      }
+    });
     fs.mkdirSync(dirBase, { recursive: true });
   } else fs.mkdirSync(dirBase, { recursive: true });
 
-  const pages = [];
+  const pages = await fetchMarkdown();
 
-  for (const item of data.resources) {
-    const { title, description, image } = await fetch(item.secure_url).then(
-      (res) => res.json()
-    );
-    const base = path.join(
-      __dirname,
-      "../views/pages/furnitures/" +
-        title.toLowerCase().split(" ").join("-") +
-        ".pug"
-    );
-    const folder = item.folder.split("/");
-    folder.shift();
-    const imagesDir = folder.join("/");
-    const link = base.split("/views/pages")[1].split(".")[0] + ".html";
-    pages.push({
-      title,
-      description,
-      link,
-      image,
-    });
-    fs.writeFileSync(
-      base,
-      generateTemplate(title, description, imagesDir, image)
-    );
-  }
   fs.writeFileSync(cacheDataDir, JSON.stringify({ pages }));
 }
 
