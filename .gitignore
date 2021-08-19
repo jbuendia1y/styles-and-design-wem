@@ -5,7 +5,7 @@ docs
 
 # Generate by scripts
 src/views/pages/furnitures/*
-src/scripts/*.json
+scripts/pages.json
 
 # Node
 node_modules

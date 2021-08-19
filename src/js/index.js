@@ -1,18 +1,13 @@
 function setCurrentWidth() {
   const slider = window.document.querySelector("div.presentation");
   const widthBody = parseInt(slider.querySelector("img").width);
-  const n = (45 / 100) * widthBody;
+  const n = (50 / 100) * widthBody;
   return parseInt(widthBody + n);
 }
 
 (function () {
-  let currentWidth = setCurrentWidth();
-
-  window.addEventListener("resize", () => {
-    currentWidth = setCurrentWidth();
-  });
-
   setInterval(() => {
+    const currentWidth = setCurrentWidth();
     const slider = document.querySelector("div.presentation");
     const maxWidth =
       slider.querySelector("img").width *
@@ -20,5 +15,5 @@ function setCurrentWidth() {
 
     if (maxWidth === slider.scrollLeft) slider.scrollLeft = 0;
     else slider.scrollLeft += currentWidth;
-  }, 4500);
+  }, 5000);
 })();

@@ -24,7 +24,6 @@ mixin makeMiniGalery(directory)
 
 block head 
     link(rel="stylesheet", href="/css/furniture.css")
-    +metaData({title:headTitle,description:headDescription,image:image})
 
 block content 
     main.furniture
@@ -33,6 +32,8 @@ block content
             .furniture__text
                 h1.furniture__title=title
                 p.furniture__description !{description}
+    if _content.length !== 0
+        div.container !{_content}
     section.container.miniGalery
         h2.miniGalery__title Galería
         .miniGalery-grid

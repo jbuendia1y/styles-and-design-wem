@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && gulp",
     "dev": "npm start",
     "build": "gulp production",
-    "clear": "node ./src/scripts/clear-files-for-production.js"
+    "clear": "node ./scripts/clear-files-for-production.js"
   },
   "keywords": [],
   "author": "Joaquín Buendía",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^1.26.3",
+    "gray-matter": "^4.0.3",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^7.1.0",
     "gulp-pug": "^5.0.0",

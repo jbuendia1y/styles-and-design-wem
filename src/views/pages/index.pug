@@ -10,25 +10,29 @@ mixin worksGalery
             - worksImagesGalery.push({image : galery[folder][folderChild][n],alt :"Trabajo realizado Nº " + index + " de la galería"})
 
     each item in worksImagesGalery 
-        img.works__image(src=item.image,alt=item.alt)
+        img.works__image(src=item.image,alt=item.alt,loading="lazy")
 
-
+//- https://res.cloudinary.com/dzur9okbf/image/upload/v1628636508/styles-and-designs-wem/Melamine/Cocina/IMG_20200807_183116_e3xuza.jpg
 block prepend head 
     +metaData({
-        description : "Somos una empresa dedicada \n A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad",
-        image: "https://res.cloudinary.com/dzur9okbf/image/upload/v1628636544/styles-and-designs-wem/Melamine/Bar/IMG_20200815_181328_rlppz3.jpg"
+        description : "Encuentra los mejores muebles de melamine con acabados de alta calidad. \nAquí en Estilos & Diseños WEM",
+        image: "https://res.cloudinary.com/dzur9okbf/image/upload/v1628636544/styles-and-designs-wem/Melamine/Bar/IMG_20200815_181328_rlppz3.jpg",
+        keywords: ["muebles","melamine","drywall","estilos","diseños","wem"]
     })
     link(rel="stylesheet", href="/css/index.css")
 block content
     main
         .presentation
+            .presentation__box 
+                img.presentation__image(data-src="https://res.cloudinary.com/dzur9okbf/image/upload/v1628636524/styles-and-designs-wem/Melamine/Cocina/IMG_20200713_163629_y7pp53.jpg",alt="lorem image")
+                .presentation__text
+                    h1(translate="no") Estilos & Diseños WEM
+                    p Los mejores muebles de Melamine
             each item in main_data
-                -const lista = item.split("/")
-                -const nameSite = lista[lista.length - 1].split(".")[0]
                 .presentation__box 
-                    img.presentation__image(data-src=item,alt=nameSite.split(".")[0],loading="lazy")
+                    img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
-                        span.presentation__title-block Muebles para #{nameSite}
+                        span.presentation__title-block Muebles para #{item.title}
     section.container.furnitures
         h2.furnitures__title#variedad-de-muebles Variedad de Muebles
         .furnitures__box

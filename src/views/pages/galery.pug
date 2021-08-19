@@ -3,7 +3,8 @@ extends ../layouts/main.pug
 block prepend head 
     +metaData({
         title: "Galery",
-        description : "Galería de Fotos \n Fotos de trabajos realizados"
+        description : "Galería de Fotos \n Fotos de trabajos realizados",
+        keywords:["galeria","estilos","diseños","wem"]
     })
     link(rel="stylesheet", href="/css/galery.css")
 
@@ -12,7 +13,7 @@ block content
         each mainFolder in Object.keys(galery)
             each folder in Object.keys(galery[mainFolder])
                 .folder-box
-                    button.folder__button(type="button",data-folder=mainFolder,data-site=folder)
+                    button.folder__button(type="button",aria-label="view images",data-folder=mainFolder,data-site=folder)
                         svg 
                             use(xlink:href="assets/images/icons/search-plus.svg#img")
                     img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
