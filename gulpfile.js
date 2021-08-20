@@ -1,10 +1,13 @@
+require("dotenv").config();
+
 const gulp = require("gulp"),
   pug = require("gulp-pug"),
   babel = require("gulp-babel"),
   purge = require("gulp-css-purge"),
   sass = require("gulp-sass")(require("node-sass")),
   cleanCSS = require("gulp-clean-css"),
-  imagemin = require("gulp-imagemin");
+  imagemin = require("gulp-imagemin"),
+  gulpData = require("gulp-data");
 
 const {
   VIEWS_DIR,
@@ -23,7 +26,8 @@ gulp.task("views", async () => {
     .pipe(
       pug({
         pretty: false,
-        data: { ...indexData, ...pages },
+        data: { ...indexData, ...pages, locals: process.env },
+        locals: gulpData(process.env),
       })
     )
     .pipe(gulp.dest(DIST_DIR));
