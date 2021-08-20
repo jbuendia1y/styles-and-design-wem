@@ -16,6 +16,8 @@
     "cloudinary": "^1.26.3",
     "gray-matter": "^4.0.3",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-css-purge": "^3.0.9",
     "gulp-imagemin": "^7.1.0",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.0.0",
