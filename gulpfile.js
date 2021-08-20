@@ -1,8 +1,10 @@
-const gulp = require("gulp");
-const pug = require("gulp-pug");
-const babel = require("gulp-babel");
-const sass = require("gulp-sass")(require("node-sass"));
-const imagemin = require("gulp-imagemin");
+const gulp = require("gulp"),
+  pug = require("gulp-pug"),
+  babel = require("gulp-babel"),
+  purge = require("gulp-css-purge"),
+  sass = require("gulp-sass")(require("node-sass")),
+  cleanCSS = require("gulp-clean-css"),
+  imagemin = require("gulp-imagemin");
 
 const {
   VIEWS_DIR,
@@ -58,6 +60,8 @@ gulp.task("sass", () => {
   return gulp
     .src([base + "/*.scss", base + "/**/*.scss"])
     .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
+    .pipe(purge({ verbose: false, shorten: true }))
+    .pipe(cleanCSS())
     .pipe(gulp.dest(DIST_DIR + "/css"));
 });
 
@@ -83,8 +87,12 @@ gulp.task("default", async () => {
   server.init({
     server: {
       baseDir: DIST_DIR,
+      serveStaticOptions: {
+        extensions: ["html"],
+      },
     },
     ghostMode: false,
+    notify: false,
   });
 
   gulp.watch(VIEWS_DIR, gulp.series("views")).on("change", server.reload);

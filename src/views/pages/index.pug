@@ -29,7 +29,7 @@ block content
                     h1(translate="no") Estilos & Diseños WEM
                     p Los mejores muebles de Melamine
             each item in main_data
-                .presentation__box 
+                a.presentation__box(href="/furnitures/muebles-para-"+item.title.toLowerCase())
                     img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{item.title}
@@ -43,7 +43,7 @@ block content
         .works__box
             .works-grid
                 +worksGalery()
-            a.works__button(href="/galery.html") Ver más
+            a.works__button(href="/galery") Ver más
 
 block scripts 
     script(src="/js/index.js") 
