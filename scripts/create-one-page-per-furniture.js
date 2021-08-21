@@ -55,7 +55,7 @@ const fetchMarkdown = async () => {
       title: data.title,
       description: data.description,
       image: data.image,
-      link: "/furnitures/" + fileName.replace(".pug", ""),
+      link: "/" + fileName.replace(".pug", ""),
     });
     console.log("✅ Created file " + fileName);
     fs.writeFileSync(pagePugDir, pugTemplate, { encoding: "utf-8" });

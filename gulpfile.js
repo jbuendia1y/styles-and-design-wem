@@ -1,13 +1,5 @@
-require("dotenv").config();
-
 const gulp = require("gulp"),
-  pug = require("gulp-pug"),
-  babel = require("gulp-babel"),
-  purge = require("gulp-css-purge"),
-  sass = require("gulp-sass")(require("node-sass")),
-  cleanCSS = require("gulp-clean-css"),
-  imagemin = require("gulp-imagemin"),
-  gulpData = require("gulp-data");
+  path = require("path");
 
 const {
   VIEWS_DIR,
@@ -17,57 +9,13 @@ const {
   JS_DIR,
 } = require("./constans");
 
-gulp.task("views", async () => {
-  const indexData = await require("./index").fetchUrls();
-  const pages = await require("./index").pages();
+gulp.task("views", require("./gulp/views"));
 
-  return gulp
-    .src(["./src/views/pages/*.pug", "./src/views/pages/**/*.pug"])
-    .pipe(
-      pug({
-        pretty: false,
-        data: { ...indexData, ...pages, locals: process.env },
-        locals: gulpData(process.env),
-      })
-    )
-    .pipe(gulp.dest(DIST_DIR));
-});
+gulp.task("images", require("./gulp/images"));
 
-gulp.task("images", () => {
-  const base = "./src/assets/images";
-  return gulp
-    .src([base + "/*", base + "/**/*"])
-    .pipe(
-      imagemin([
-        imagemin.mozjpeg({ quality: 70, progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 }),
-      ])
-    )
-    .pipe(gulp.dest("./dist/assets/images"));
-});
+gulp.task("js", require("./gulp/javascript"));
 
-gulp.task("js", () => {
-  return gulp
-    .src("./src/js/*.js")
-    .pipe(
-      babel({
-        presets: ["@babel/preset-env"],
-        comments: false,
-        compact: true,
-      })
-    )
-    .pipe(gulp.dest(DIST_DIR + "/js"));
-});
-
-gulp.task("sass", () => {
-  const base = "./src/scss";
-  return gulp
-    .src([base + "/*.scss", base + "/**/*.scss"])
-    .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
-    .pipe(purge({ verbose: false, shorten: true }))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(DIST_DIR + "/css"));
-});
+gulp.task("sass", require("./gulp/sass"));
 
 gulp.task("create-furnitures-pages", async () => {
   await require("./scripts/create-one-page-per-furniture")();

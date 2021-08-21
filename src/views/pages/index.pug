@@ -16,7 +16,7 @@ mixin worksGalery
 block prepend head 
     +metaData({
         description : "Encuentra los mejores muebles de melamine con acabados de alta calidad. \nAquí en Estilos & Diseños WEM",
-        image: "https://res.cloudinary.com/dzur9okbf/image/upload/v1628636544/styles-and-designs-wem/Melamine/Bar/IMG_20200815_181328_rlppz3.jpg",
+        image: process.env.MAINIMAGE,
         keywords: ["muebles","melamine","drywall","estilos","diseños","wem"]
     })
     link(rel="stylesheet", href="/css/index.css")
@@ -29,7 +29,7 @@ block content
                     h1(translate="no") Estilos & Diseños WEM
                     p Los mejores muebles de Melamine
             each item in main_data
-                a.presentation__box(href="/furnitures/muebles-para-"+item.title.toLowerCase())
+                a.presentation__box(href="/muebles-para-"+item.title.toLowerCase())
                     img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{item.title}
