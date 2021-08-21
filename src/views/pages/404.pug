@@ -1,0 +1,12 @@
+extends ../layouts/main.pug
+
+block head
+    link(rel="stylesheet", href="/css/404.css")
+    +metaData({title : "404 Page",desciption :"Page Not Found. \n No logramos encontrar tu página.",keywords:["404 page"]})
+block content 
+    main.container.text-center
+        h1 404
+        p Page not found
+        p No se encontró la página deseada
+            span(style="display:block;") trate de recargar la página o regresar al 
+                a(href="/") inicio
