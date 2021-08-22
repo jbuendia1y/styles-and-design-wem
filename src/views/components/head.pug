@@ -1,4 +1,4 @@
-mixin metaData({title,description,image,keywords})
+mixin metaData({title,description,image,keywords,canonical})
     meta(name="title",content=title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM")
     meta(property="og:title",content=title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM")
 
@@ -12,6 +12,8 @@ mixin metaData({title,description,image,keywords})
 
     if keywords 
         meta(name="keywords",content=keywords.toString())
+
+    link(rel="canonical",href=process.env.CANONICAL_URL + canonical)
         
     title #{title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM"}
 
@@ -22,8 +24,9 @@ html(lang="es")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
+        link(rel="preload", as="image",href="/assets/images/logo.png")
         link(rel="shortcut icon", href="/assets/images/logo.png", type="image/x-icon")
-
+        link(rel="preconnect dns-prefetch",href="https://res.cloudinary.com")
         style.
             @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 

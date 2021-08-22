@@ -4,7 +4,8 @@ block prepend head
     +metaData({
         title: "Galery",
         description : "Galería de Fotos \n Fotos de trabajos realizados",
-        keywords:["galeria","estilos","diseños","wem"]
+        keywords:["galeria","estilos","diseños","wem"],
+        canonical: "/galery"
     })
     link(rel="stylesheet", href="/css/galery.css")
 
@@ -19,5 +20,5 @@ block content
                     img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
 
 block scripts 
-    script(src="/js/galery.js")
     script(src="/js/lazy-images.js")
+    script(src="/js/galery.js")

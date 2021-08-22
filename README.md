@@ -7,6 +7,9 @@ Install dependencies : **'`npm install`'**
 ### Create a '.env' file
 
 ```
+MAINIMAGE = Imagen principal de la web
+CANONICAL_URL = Url base de producción
+
 CLOUDINARY_KEY = XXX
 CLOUDINARY_SECRET = XXX
 CLOUDINARY_NAME = XXX

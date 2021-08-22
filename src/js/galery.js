@@ -1,26 +1,36 @@
 const templateAltPreview = (current, max) => `image-${current}/${max}`;
 
+const directions = {
+  left: ({ box, data, indexes: { current_index, max_index } }) => {
+    if (current_index === 1) {
+      box.src = data[max_index - 1];
+      box.alt = templateAltPreview(max_index, max_index);
+    } else if (current_index > 1) {
+      box.src = data[current_index - 2];
+      box.alt = templateAltPreview(current_index - 1, max_index);
+    }
+  },
+  right: ({ box, data, indexes: { current_index, max_index } }) => {
+    if (current_index < max_index) {
+      box.src = data[current_index]; // current_index = index + 1
+      box.alt = templateAltPreview(current_index + 1, max_index);
+    } else if (current_index === max_index) {
+      box.src = data[0];
+      box.alt = templateAltPreview(1, max_index);
+    }
+  },
+};
+
 function slider(box_image, direction, { data, current_index }) {
   const max_index = data.length;
-  if (direction === "left") {
-    if (current_index === 1) {
-      const index = max_index - 1;
-      box_image.src = data[index];
-      box_image.alt = templateAltPreview(max_index, max_index);
-    } else {
-      const index = current_index - 1;
-      box_image.src = data[index];
-      box_image.alt = templateAltPreview(index, data.length);
-    }
-  } else {
-    if (current_index === max_index) {
-      box_image.src = data[0];
-      box_image.alt = templateAltPreview(1, data.length);
-    } else {
-      box_image.src = data[current_index + 1];
-      box_image.alt = templateAltPreview(current_index + 1, max_index);
-    }
-  }
+  if (max_index === 1) return;
+  if (!direction[direction]) return;
+
+  directions[direction]({
+    box: box_image,
+    data,
+    indexes: { max_index, current_index },
+  });
 }
 
 function createButtonWithImg(url) {
@@ -54,9 +64,7 @@ function createButtonWithImg(url) {
       btnL = createButtonWithImg("assets/images/icons/arrow-up-solid.svg");
     btnL.setAttribute("data-direction", "right");
     btnR.setAttribute("data-direction", "left");
-    container.append(btnR, btnL);
-    container.append(main_image);
-    container.append(carousel);
+    container.append(btnR, btnL, main_image, carousel);
     main_box.append(container);
 
     document.querySelector("body").append(main_box);
@@ -83,20 +91,16 @@ function createButtonWithImg(url) {
     });
   };
 
-  const showPreview = (e) => {
-    const site = e.getAttribute("data-site");
-    const folder = e.getAttribute("data-folder");
-
-    fetch("assets/data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        createPreview(data["galery"][folder][site]);
-      });
-  };
-
   galery.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON" && e.target.type === "button") {
-      showPreview(e.target);
+      const site = e.target.getAttribute("data-site");
+      const folder = e.target.getAttribute("data-folder");
+
+      fetch("assets/data.json")
+        .then((res) => res.json())
+        .then((data) => {
+          createPreview(data["galery"][folder][site]);
+        });
     }
   });
 })();

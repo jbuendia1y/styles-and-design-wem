@@ -21,7 +21,7 @@
           container.remove();
         }
       });
-    }, 500);
+    }, 50);
   };
 
   const galery = document.querySelector("section.miniGalery");
