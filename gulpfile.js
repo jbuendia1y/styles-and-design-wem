@@ -1,5 +1,4 @@
-const gulp = require("gulp"),
-  path = require("path");
+const gulp = require("gulp");
 
 const {
   VIEWS_DIR,

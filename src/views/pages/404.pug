@@ -1,12 +1,32 @@
 extends ../layouts/main.pug
 
 block head
-    link(rel="stylesheet", href="/css/404.css")
-    +metaData({title : "404 Page",desciption :"Page Not Found. \n No logramos encontrar tu página.",keywords:["404 page"]})
+    +metaData({title : "404 Page",
+        desciption :"Page Not Found. \n No logramos encontrar tu página.",
+        keywords:["404 page"],
+        canonical: "/404"
+    })
+    style.
+        main {
+            min-height: 415px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+        h1{
+            font-size:80px;
+            margin:0;
+        }
+        .subtitle{
+            margin:0;
+            font-size:15px;
+        }
 block content 
-    main.container.text-center
-        h1 404
-        p Page not found
-        p No se encontró la página deseada
-            span(style="display:block;") trate de recargar la página o regresar al 
-                a(href="/") inicio
+    .container
+        main.text-center
+            div.box
+                h1 404
+                p.subtitle Page not found
+            p No se encontró la página deseada
+                span(style="display:block;") trate de recargar la página o regresar al 
+                    a(href="/") inicio

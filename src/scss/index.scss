@@ -76,17 +76,18 @@
       font-size: 40px;
     }
     p {
+      max-width: 360px;
       text-shadow: none;
       color: rgb(226, 226, 226);
       font-size: 15.5px;
+      line-height: 20px;
+      word-spacing: 5px;
     }
   }
 }
 
-.furnitures,
-.works {
-  margin-top: 5px;
-  &__title {
+section {
+  h2 {
     font-size: $subtitle-fs;
     color: $secondary-bg;
 
@@ -100,6 +101,11 @@
       margin-bottom: 5px;
     }
   }
+}
+
+.furnitures,
+.works {
+  margin-top: 5px;
 }
 
 .furnitures {

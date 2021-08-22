@@ -12,7 +12,13 @@ const generateTemplate = ({
   content,
 }) => `extends ../../layouts/furniture.pug
 block prepend head
-  +metaData({title:"${title}",description:"${description}",image:"${image}",keywords:["muebles","${title}","estilos","diseños","wem"]})
+  +metaData({
+    title:"${title}",
+    description:"${description}",
+    image:"${image}",
+    keywords:["muebles","${title}","estilos","diseños","wem"],
+    canonical:"/${title.toLowerCase().split(" ").join("-")}"
+  })
 block prepend content
   -const title="${title}"
   -const description="${description}"
