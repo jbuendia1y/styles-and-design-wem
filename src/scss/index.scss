@@ -9,8 +9,8 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-width: none; // scrollbar hidden FireFox
-
+  scrollbar-width: none;
+  /* scrollbar hidden FireFox */
   touch-action: none;
 
   &__box {

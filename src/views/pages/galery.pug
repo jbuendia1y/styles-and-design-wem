@@ -7,7 +7,6 @@ block prepend head
         keywords:["galeria","estilos","diseños","wem"],
         canonical: "/galery"
     })
-    link(rel="stylesheet", href="/css/galery.css")
 
 block content 
     main.container.galery 
@@ -16,9 +15,5 @@ block content
                 .folder-box
                     button.folder__button(type="button",aria-label="view images",data-folder=mainFolder,data-site=folder)
                         svg 
-                            use(xlink:href="assets/images/icons/search-plus.svg#img")
+                            use(xlink:href="assets/images/search-plus.svg#img")
                     img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
-
-block scripts 
-    script(src="/js/lazy-images.js")
-    script(src="/js/galery.js")
