@@ -4,7 +4,7 @@
   "description": "Estilos & Diseños WEM website",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && gulp",
+    "start": "npm run build",
     "dev": "npm run main-script && webpack-dev-server --mode development",
     "build": "NODE_ENV=production npm run main-script && NODE_ENV=production webpack --mode production",
     "main-script": "node scripts/index.js",
