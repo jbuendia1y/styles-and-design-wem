@@ -1,3 +1,8 @@
+import "../scss/galery.scss";
+
+import "../assets/images/icons/search-plus.svg";
+import "../assets/images/icons/arrow-up-solid.svg";
+
 const templateAltPreview = (current, max) => `image-${current}/${max}`;
 
 const directions = {
@@ -24,8 +29,7 @@ const directions = {
 function slider(box_image, direction, { data, current_index }) {
   const max_index = data.length;
   if (max_index === 1) return;
-  if (!direction[direction]) return;
-
+  if (directions[direction] === undefined) return;
   directions[direction]({
     box: box_image,
     data,
@@ -60,8 +64,8 @@ function createButtonWithImg(url) {
     main_image.alt = "image-1/" + imagesURL.length;
     carousel.classList.add("preview__carousel");
 
-    const btnR = createButtonWithImg("assets/images/icons/arrow-up-solid.svg"),
-      btnL = createButtonWithImg("assets/images/icons/arrow-up-solid.svg");
+    const btnR = createButtonWithImg("assets/images/arrow-up-solid.svg"),
+      btnL = createButtonWithImg("assets/images/arrow-up-solid.svg");
     btnL.setAttribute("data-direction", "right");
     btnR.setAttribute("data-direction", "left");
     container.append(btnR, btnL, main_image, carousel);

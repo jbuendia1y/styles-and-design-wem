@@ -21,10 +21,6 @@ mixin makeMiniGalery(directory)
         .miniGalery__item
             img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
 
-
-block head 
-    link(rel="stylesheet", href="/css/furniture.css")
-
 block content 
     main.furniture
         img.furniture__image(src=image, alt=title)
@@ -38,6 +34,3 @@ block content
         h2.miniGalery__title Galería
         .miniGalery-grid
             +makeMiniGalery(imagesDir)
-block scripts 
-    script(src="/js/lazy-images.js")
-    script(src="/js/furniture.js")

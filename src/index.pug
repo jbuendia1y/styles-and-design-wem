@@ -1,5 +1,5 @@
-extends ../layouts/main.pug
-include ../components/card-article.pug
+extends ./views/layouts/main.pug
+include ./views/components/card-article.pug
 
 mixin worksGalery
     - const worksImagesGalery = []
@@ -8,7 +8,6 @@ mixin worksGalery
             - const n = Math.floor(Math.random() * galery[folder][folderChild].length)
             - const index = n + 1
             - worksImagesGalery.push({image : galery[folder][folderChild][n],alt :"Trabajo realizado Nº " + index + " de la galería"})
-
     each item in worksImagesGalery 
         img.works__image(src=item.image,alt=item.alt,loading="lazy")
 
@@ -16,16 +15,15 @@ mixin worksGalery
 block prepend head 
     +metaData({
         description : "Encuentra los mejores muebles de melamine con acabados de alta calidad. \nAquí en Estilos & Diseños WEM",
-        image: process.env.MAINIMAGE,
+        image: htmlWebpackPlugin.options.data.MAINIMAGE,
         keywords: ["muebles","melamine","drywall","estilos","diseños","wem"],
         canonical: ""
     })
-    link(rel="stylesheet", href="/css/index.css")
 block content
     main
         .presentation
             .presentation__box 
-                img.presentation__image(data-src=process.env.MAINIMAGE,alt="main image")
+                img.presentation__image(data-src=htmlWebpackPlugin.options.data.MAINIMAGE,alt="main image")
                 .presentation__text
                     h1(translate="no") Estilos & Diseños WEM
                     p Tenemos los mejores muebles de Melamine, así como el mejor Drywall !!
@@ -34,7 +32,6 @@ block content
                     img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{item.title}
-
     section.container.furnitures
         h2.furnitures__title#mejores-productos Nuestros mejores productos
         .furnitures__box
@@ -46,7 +43,3 @@ block content
             .works-grid
                 +worksGalery()
             a.works__button(href="/galery") Ver más
-
-block scripts 
-    script(src="/js/lazy-images.js") 
-    script(src="/js/index.js") 

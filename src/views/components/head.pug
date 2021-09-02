@@ -1,3 +1,5 @@
+- const {pages,galery,main_data} = htmlWebpackPlugin.options.data
+
 mixin metaData({title,description,image,keywords,canonical})
     meta(name="title",content=title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM")
     meta(property="og:title",content=title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM")
@@ -13,8 +15,8 @@ mixin metaData({title,description,image,keywords,canonical})
     if keywords 
         meta(name="keywords",content=keywords.toString())
 
-    meta(property="og:url",content=process.env.CANONICAL_URL + canonical)
-    link(rel="canonical",href=process.env.CANONICAL_URL + canonical)
+    meta(property="og:url",content=htmlWebpackPlugin.options.data.CANONICAL_URL + canonical)
+    link(rel="canonical",href=htmlWebpackPlugin.options.data.CANONICAL_URL + canonical)
 
     title #{title ? title + " | Estilos & Diseños WEM" : "Estilos & Diseños WEM"}
 
@@ -35,8 +37,6 @@ html(lang="es")
 
         style.
             @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-
-        link(rel="stylesheet", href="/css/styles.css")
 
         block head
     body 

@@ -1,3 +1,5 @@
+import "../scss/index.scss";
+
 function setCurrentWidth() {
   const slider = window.document.querySelector("div.presentation");
   const widthBody = parseInt(slider.querySelector("img").width);

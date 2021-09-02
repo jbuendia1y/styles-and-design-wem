@@ -1,6 +1,6 @@
 nav.main-nav
     .container 
         ul.list
-            li.list__item: a.list__link(href="/") Inicio
-            li.list__item: a.list__link(href="/about") Quienes Somos?
-            li.list__item: a.list__link(href="/galery") Galería de Fotos
+            li.list__item: a.list__link(href=htmlWebpackPlugin.options.data.CANONICAL_URL) Inicio
+            li.list__item: a.list__link(href=htmlWebpackPlugin.options.data.CANONICAL_URL+"/about") Quienes Somos?
+            li.list__item: a.list__link(href=htmlWebpackPlugin.options.data.CANONICAL_URL+"/galery") Galería de Fotos

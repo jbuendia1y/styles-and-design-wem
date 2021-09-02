@@ -1,3 +1,5 @@
+require("../scss/furniture.scss");
+
 (function () {
   const viewFullImage = (image) => {
     const container = document.createElement("div"),
