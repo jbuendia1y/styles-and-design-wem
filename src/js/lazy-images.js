@@ -2,7 +2,7 @@
   const images = document.querySelectorAll("[data-src]");
 
   const intersectionOptions = {
-    rootMargin: "100px",
+    rootMargin: "150px",
   };
 
   const loadImage = (img) => {

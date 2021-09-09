@@ -1,120 +1,74 @@
 @import "./constants";
-@import "./helpers/form";
 @import "./helpers/button";
+@import "./components/card";
 
 .galery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  justify-items: center;
-  gap: 10px 10px;
-  margin-top: 15px;
-}
-
-.folder {
-  &__button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-    background: none;
-    border: none;
-
-    width: 70px;
-    height: 70px;
-
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
-    background-color: $primary-bg;
-
-    cursor: pointer;
-
-    svg {
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-
-      width: 25px;
-      height: 25px;
-      fill: #fff;
-      pointer-events: none;
-    }
-  }
-
-  &-box {
-    display: flex;
-    flex-direction: column;
-
-    height: 200px;
-    width: 100%;
-    position: relative;
-
-    overflow: hidden;
-    box-shadow: 1px 1px 1.8px black;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-}
-
-.preview {
-  position: fixed;
-  top: 0;
-  right: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: rgba(32, 32, 32, 0.61);
-
-  min-width: 100vw;
   min-height: 100vh;
 
-  &__box {
-    position: relative;
-    max-width: 500px;
-    max-height: 500px;
-
+  h2 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+
+    background-color: rgb(224, 224, 224);
+    padding: 5px 10px;
   }
 
-  &__image {
-    width: 100%;
-    object-fit: cover;
+  &__list {
+    display: none;
+
+    li {
+      min-height: 300px;
+      max-height: 350px;
+      list-style: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+
+      object-fit: cover;
+    }
+
+    &-active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 10px;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+
+    transform: rotate(180deg);
+    transition: transform 0.5s;
+    width: 15px;
+    height: 15px;
+
+    &-active {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__materials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
   }
 }
 
-.preview__box button {
-  position: absolute;
-  width: 40px;
-  height: 38px;
-  top: 48%;
+.card {
+  max-width: 100%;
+  height: 250px;
+}
 
-  @include resetButton();
-  cursor: pointer;
-  background-color: black;
-  border-radius: 50%;
-  z-index: 6;
-
-  img {
-    position: relative;
-    z-index: 4;
-
-    max-width: 100%;
-    max-height: 100%;
-    filter: invert(1);
-  }
-
-  &:nth-child(1) {
-    left: 0;
-    transform: rotate(-90deg);
-  }
-  &:nth-child(2) {
-    right: 0;
-    transform: rotate(90deg);
+@media screen and (min-width: 1024px) {
+  .galery {
+    &__section {
+      h2 {
+        cursor: pointer;
+      }
+    }
   }
 }

@@ -1,6 +1,11 @@
 @import "./constants";
 @import "./components/cardArticle";
+@import "./components/tag";
 @import "./helpers/button";
+
+main {
+  margin-bottom: 15px;
+}
 
 .presentation {
   display: flex;
@@ -82,6 +87,19 @@
       font-size: 15.5px;
       line-height: 20px;
       word-spacing: 5px;
+    }
+  }
+}
+
+.tagList {
+  display: flex;
+  max-width: min-content;
+
+  li {
+    list-style: none;
+
+    &:nth-child(2n) {
+      margin: 0 8px;
     }
   }
 }

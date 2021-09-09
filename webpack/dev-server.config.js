@@ -18,6 +18,14 @@ module.exports = {
           to: "/" + item.replace(".pug", ".html"),
         };
       }),
+      ...readdirSync(path.join(__dirname, "../src/views/pages/tags/")).map(
+        (item) => {
+          return {
+            from: "^/" + item.replace(".pug", ""),
+            to: "/" + item.replace(".pug", ".html"),
+          };
+        }
+      ),
     ],
   },
 };

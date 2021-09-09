@@ -21,7 +21,7 @@ mixin makeMiniGalery(directory)
         .miniGalery__item
             img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
 
-block content 
+block append content 
     main.furniture
         img.furniture__image(src=image, alt=title)
         .furniture__box
