@@ -129,6 +129,13 @@ module.exports = {
       chunks: [],
       minify: minifyHtmlOptions,
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/views/pages/404.pug",
+      filename: "404.html",
+      chunks: ["app"],
+      data: templateData,
+      minify: minifyHtmlOptions,
+    }),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
       chunkFilename: "[id].css",

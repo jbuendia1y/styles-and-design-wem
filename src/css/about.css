@@ -1,12 +1,47 @@
 .about {
-  margin-top: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+}
+.about__text {
   text-align: center;
 }
 
-.about__paragraph-strong {
+.about__paragraph {
+  line-height: 20px;
+}
+
+section h2::before {
+  content: "";
   display: block;
+  width: 150px;
+  height: 2.5px;
+
+  background-color: #212121;
+  margin-bottom: 5px;
+}
+
+.about__image {
+  position: relative;
+  max-height: 350px;
+}
+
+.about__image-w {
+  max-width: 100%;
+  max-height: inherit;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__logo {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+
+  mix-blend-mode: multiply;
+  filter: brightness(1.1);
+
+  max-width: 100px;
 }
 
 .about__map {
@@ -14,11 +49,4 @@
   margin: 0 auto;
 
   max-width: 100%;
-}
-
-@media screen and (min-width: 900px) {
-  .about {
-    flex-direction: row;
-    align-items: center;
-  }
 }

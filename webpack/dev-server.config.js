@@ -9,6 +9,7 @@ module.exports = {
   historyApiFallback: {
     rewrites: [
       { from: /^\/about/, to: "/about.html" },
+      { from: /^\/404/, to: "/404.html" },
       { from: /^\/galery/, to: "/galery.html" },
       ...readdirSync(
         path.join(__dirname, "../src/views/pages/furnitures/")

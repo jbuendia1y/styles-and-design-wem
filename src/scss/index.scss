@@ -2,6 +2,7 @@
 @import "./components/cardArticle";
 @import "./components/tag";
 @import "./helpers/button";
+@import "./helpers/addLineTop";
 
 main {
   margin-bottom: 15px;
@@ -109,15 +110,7 @@ section {
     font-size: $subtitle-fs;
     color: $secondary-bg;
 
-    &::before {
-      content: "";
-      display: block;
-      width: 150px;
-      height: 2.5px;
-      background-color: $secondary-bg;
-
-      margin-bottom: 5px;
-    }
+    @include addLineTop();
   }
 }
 

@@ -1,0 +1,20 @@
+extends ../../layouts/main.pug
+include ../../components/card-article.pug
+
+block content
+    main.container 
+        h1 Granito 
+        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, autem repellendus quasi sequi odit odio nostrum obcaecati cumque numquam, esse vitae! Unde labore quasi ullam voluptatem, in temporibus itaque molestiae 
+            a(href="#lista-de-granito") lista de granito.
+    -const galeryData = require("../../../../dist/assets/data.json")["galery"]
+    section.container 
+        h2#lista-de-granito Tipos de productos con Granito
+        p Listado de productos con granito.
+        .miniGalery-grid
+            each imagesData,page in galeryData["Granito"]
+                -const title = "Granito para la "+ page
+                +cardArticle({
+                    title: title,
+                    link:"/"+title.split(" ").join("-").toLowerCase(),
+                    image:imagesData[0]})
+
