@@ -7,14 +7,14 @@ block prepend head
         keywords: ["quienes somos","about","estilos","diseños","wem"],
         canonical: "/about"
     })
-    link(rel="preconnect dns-prefetch",href="https://www.google.com/maps")
+    link(rel="preconnect dns-prefetch",href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.810882395877!2d-77.05224318518871!3d-11.918245891552944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzA1LjciUyA3N8KwMDMnMDAuMiJX!5e0!3m2!1ses!2spe!4v1631312986573!5m2!1ses!2spe")
 
     style 
         include ../../css/about.css
 
 block content
-    main.about-box
-        .container.about
+    main
+        .about
             .about__image 
                 img.about__image-w(data-src="https://res.cloudinary.com/dzur9okbf/image/upload/v1629436697/styles-and-designs-wem/Melamine/Cocina/IMG_20200807_183215_qv4r0d.jpg", alt="mueble de melamine para la cocina")
                 img.about__logo(data-src="/assets/images/logo.png", alt="logo de la empresa")
@@ -24,11 +24,10 @@ block content
                     |   #[a.link(href="/melamine") Melamine], 
                     |   #[a.link(href="/granito") Granito] y 
                     |   #[a.link(href="/drywall") Drywall] .
-    section.container 
-        h2#buscamos ¿Qué Buscamos?
-        p.about__paragraph Buscamos crear sensaciones enfocándonos en proyectos funcionales y personalizados. Optimizamos los espacios, adaptando y transformando el entorno a las necesidades, costumbres y personalidad de cada familia.
-    section.container 
-        h2#experiencia Nuestra Experiencia
-        p.about__paragraph Más de 15 años de experiencia junto a un equipo joven, creativo y dinámico, se convierten en la base para desarrollar trabajos con necesidades exigentes que permiten exceder las expectativas. 
-    section
+        section.container 
+            h2#buscamos ¿Qué Buscamos?
+            p.paragraph Buscamos crear sensaciones enfocándonos en proyectos funcionales y personalizados. Optimizamos los espacios, adaptando y transformando el entorno a las necesidades, costumbres y personalidad de cada familia.
+        section.container 
+            h2#experiencia Nuestra Experiencia
+            p.paragraph Más de 15 años de experiencia junto a un equipo joven, creativo y dinámico, se convierten en la base para desarrollar trabajos con necesidades exigentes que permiten exceder las expectativas. 
     iframe.about__map(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.810882395877!2d-77.05224318518871!3d-11.918245891552944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzA1LjciUyA3N8KwMDMnMDAuMiJX!5e0!3m2!1ses!2spe!4v1631312986573!5m2!1ses!2spe",width="600",height="450",style="border:0;",allowfullscreen="",loading="lazy")

@@ -30,6 +30,7 @@ block prepend content
 const fetchMarkdown = async () => {
   const matter = require("gray-matter");
   const pages = [];
+  const pagesByTag = {};
   const files = await cloudinary.search
     .expression('format:md AND folder:"styles-and-designs-wem/*"')
     .max_results(100)
@@ -63,11 +64,21 @@ const fetchMarkdown = async () => {
       image: data.image,
       link: "/" + fileName.replace(".pug", ""),
     });
+
+    const tag = folder.split("/")[1];
+    if (pagesByTag[tag] === undefined) pagesByTag[tag] = [];
+    pagesByTag[tag].push({
+      title: data.title,
+      description: data.description,
+      image: data.image,
+      link: "/" + fileName.replace(".pug", ""),
+    });
+
     console.log("✅ Created file " + fileName);
     fs.writeFileSync(pagePugDir, pugTemplate, { encoding: "utf-8" });
   }
 
-  return pages;
+  return { pages, pagesByTag };
 };
 
 async function MakeFiles() {
@@ -87,9 +98,9 @@ async function MakeFiles() {
     fs.mkdirSync(dirBase, { recursive: true });
   } else fs.mkdirSync(dirBase, { recursive: true });
 
-  const pages = await fetchMarkdown();
+  const { pages, pagesByTag } = await fetchMarkdown();
 
-  fs.writeFileSync(cacheDataDir, JSON.stringify({ pages }));
+  fs.writeFileSync(cacheDataDir, JSON.stringify({ pages, pagesByTag }));
 }
 
 module.exports = MakeFiles;

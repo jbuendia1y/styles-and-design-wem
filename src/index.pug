@@ -32,19 +32,19 @@ block content
                     img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{item.title}
-    div.container
-        ul.tagList 
-            li: a.tag-link(href="/melamine") Melamine
-            li: a.tag-link(href="/drywall") Drywall
-            li: a.tag-link(href="/granito") Granito
-    section.container.furnitures
-        h2.furnitures__title#mejores-productos Nuestros mejores productos
-        .furnitures__box
-            each page in pages
-                +cardArticle(page)
-    section.container.works
-        h2.works__title#trabajos-realizados Trabajos Realizados
-        .works__box
-            .works-grid
-                +worksGalery()
-            a.works__button(href="/galery") Ver más
+        div.container.tagList-box
+            ul.tagList 
+                li: a.tag-link(href="/melamine") Melamine
+                li: a.tag-link(href="/drywall") Drywall
+                li: a.tag-link(href="/granito") Granito
+        section.container.furnitures
+            h2.furnitures__title#mejores-productos Nuestros mejores productos
+            .furnitures__box
+                each page in pages
+                    +cardArticle(page)
+        section.container.works
+            h2.works__title#trabajos-realizados Trabajos Realizados
+            .works__box
+                .works-grid
+                    +worksGalery()
+                a.works__button(href="/galery") Ver más

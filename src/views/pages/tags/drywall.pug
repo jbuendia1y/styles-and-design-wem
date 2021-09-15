@@ -1,0 +1,20 @@
+extends ../../layouts/main.pug
+include ../../components/card-article.pug
+
+block content
+    main 
+        .container 
+            h1 Drywall 
+            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita aliquid delectus recusandae labore inventore. Optio unde labore, dicta exercitationem autem consectetur dignissimos soluta provident fuga quam? Possimus sed rerum perspiciatis?
+                a(href="#lista-de-drywall") lista de drywall.
+        -const pagesByTag = require("../../../../scripts/pages.json")["pagesByTag"]["Drywall"]
+        section.container 
+            h2#lista-de-drywall Tipos de Drywall 
+            p Listado de productos fabricados con drywall 
+            .miniGalery-grid 
+                each pageData in pagesByTag
+                    +cardArticle({
+                        title: pageData.title,
+                        description: pageData.description,
+                        link:pageData.link,
+                        image:pageData.image})

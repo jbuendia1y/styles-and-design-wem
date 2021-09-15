@@ -4,10 +4,6 @@
 @import "./helpers/button";
 @import "./helpers/addLineTop";
 
-main {
-  margin-bottom: 15px;
-}
-
 .presentation {
   display: flex;
   height: 400px;
@@ -95,6 +91,10 @@ main {
 .tagList {
   display: flex;
   max-width: min-content;
+
+  &-box {
+    margin-top: 15px;
+  }
 
   li {
     list-style: none;
