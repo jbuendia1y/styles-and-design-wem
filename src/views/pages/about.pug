@@ -5,16 +5,29 @@ block prepend head
         title: "About",
         description : "Quienes somos? \n Somos una empresa dedicada a la Fabricación de muebles de melamine",
         keywords: ["quienes somos","about","estilos","diseños","wem"],
-        canonical: "/galery"
+        canonical: "/about"
     })
+    link(rel="preconnect dns-prefetch",href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.810882395877!2d-77.05224318518871!3d-11.918245891552944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzA1LjciUyA3N8KwMDMnMDAuMiJX!5e0!3m2!1ses!2spe!4v1631312986573!5m2!1ses!2spe")
+
     style 
         include ../../css/about.css
 
 block content
-    main.container.about
-        .about__text
-            h1.about__title Somos una empresa dedicada 
-            p.about__paragraph  A la Fabricación de muebles de melamine, especialistas en acabados de alta calidad 
-                strong.about__paragraph-strong Somos "Estilos & Diseños WEM"
-        
-        iframe.about__map(src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d62459.57109191422!2d-77.057456!3d-11.924342!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x9105d10799eeb0d9%3A0xaf1b1d1ee1d21fd5!2sSan%20Pedro%2C%20Comas%2015316!3m2!1d-11.9071495!2d-77.06549489999999!5e0!3m2!1ses-419!2spe!4v1628536337990!5m2!1ses-419!2spe",width="600",height="450",style="border:0;",allowfullscreen="",loading="lazy")
+    main
+        .about
+            .about__image 
+                img.about__image-w(data-src="https://res.cloudinary.com/dzur9okbf/image/upload/v1629436697/styles-and-designs-wem/Melamine/Cocina/IMG_20200807_183215_qv4r0d.jpg", alt="mueble de melamine para la cocina")
+                img.about__logo(data-src="/assets/images/logo.png", alt="logo de la empresa")
+            .about__text
+                h1.about__title#sobre-nosotros Sobre nosotros
+                p.about__paragraph Somos una empresa especializada en Arquitectura de Interiores (cocinas, dormitorios, oficinas, baños, centros de entretenimientos, etc) con 
+                    |   #[a.link(href="/melamine") Melamine], 
+                    |   #[a.link(href="/granito") Granito] y 
+                    |   #[a.link(href="/drywall") Drywall] .
+        section.container 
+            h2#buscamos ¿Qué Buscamos?
+            p.paragraph Buscamos crear sensaciones enfocándonos en proyectos funcionales y personalizados. Optimizamos los espacios, adaptando y transformando el entorno a las necesidades, costumbres y personalidad de cada familia.
+        section.container 
+            h2#experiencia Nuestra Experiencia
+            p.paragraph Más de 15 años de experiencia junto a un equipo joven, creativo y dinámico, se convierten en la base para desarrollar trabajos con necesidades exigentes que permiten exceder las expectativas. 
+    iframe.about__map(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.810882395877!2d-77.05224318518871!3d-11.918245891552944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzA1LjciUyA3N8KwMDMnMDAuMiJX!5e0!3m2!1ses!2spe!4v1631312986573!5m2!1ses!2spe",width="600",height="450",style="border:0;",allowfullscreen="",loading="lazy")

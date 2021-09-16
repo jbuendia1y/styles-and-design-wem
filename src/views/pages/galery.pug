@@ -9,11 +9,4 @@ block prepend head
     })
 
 block content 
-    main.container.galery 
-        each mainFolder in Object.keys(galery)
-            each folder in Object.keys(galery[mainFolder])
-                .folder-box
-                    button.folder__button(type="button",aria-label="view images",data-folder=mainFolder,data-site=folder)
-                        svg 
-                            use(xlink:href="assets/images/search-plus.svg#img")
-                    img(data-src=galery[mainFolder][folder][0], alt=mainFolder + " " + folder,loading="lazy")
+    #root

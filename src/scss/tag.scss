@@ -1,0 +1,11 @@
+@import "./components/cardArticle";
+
+.miniGalery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 5px 10px;
+
+  article {
+    max-height: 250px;
+  }
+}

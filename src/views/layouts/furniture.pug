@@ -1,6 +1,7 @@
 extends ./main.pug
 
 mixin makeMiniGalery(directory)
+    - const galery = require("../../../../dist/assets/data.json")["galery"]
     - const parentFolder = directory.split("/")[0]
     - const childFolder = directory.split("/")[1]
     - const lista = galery[parentFolder][childFolder]
@@ -21,7 +22,7 @@ mixin makeMiniGalery(directory)
         .miniGalery__item
             img.miniGalery__image(src=image, alt=parentFolder +" " +childFolder)
 
-block content 
+block append content 
     main.furniture
         img.furniture__image(src=image, alt=title)
         .furniture__box
@@ -34,3 +35,5 @@ block content
         h2.miniGalery__title Galería
         .miniGalery-grid
             +makeMiniGalery(imagesDir)
+
+        a.miniGalery__button(href="/galery?tag="+imagesDir.split("/")[0]+"#"+imagesDir.split("/")[1]) Ver más 

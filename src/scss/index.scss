@@ -1,6 +1,8 @@
 @import "./constants";
 @import "./components/cardArticle";
+@import "./components/tag";
 @import "./helpers/button";
+@import "./helpers/addLineTop";
 
 .presentation {
   display: flex;
@@ -86,20 +88,29 @@
   }
 }
 
+.tagList {
+  display: flex;
+  max-width: min-content;
+
+  &-box {
+    margin-top: 15px;
+  }
+
+  li {
+    list-style: none;
+
+    &:nth-child(2n) {
+      margin: 0 8px;
+    }
+  }
+}
+
 section {
   h2 {
     font-size: $subtitle-fs;
     color: $secondary-bg;
 
-    &::before {
-      content: "";
-      display: block;
-      width: 150px;
-      height: 2.5px;
-      background-color: $secondary-bg;
-
-      margin-bottom: 5px;
-    }
+    @include addLineTop();
   }
 }
 

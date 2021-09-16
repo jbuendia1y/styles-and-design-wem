@@ -3,18 +3,18 @@ include ./views/components/card-article.pug
 
 mixin worksGalery
     - const worksImagesGalery = []
-    each folder in Object.keys(galery)
-        each folderChild in Object.keys(galery[folder])
-            - const n = Math.floor(Math.random() * galery[folder][folderChild].length)
+    -const galeryData = require("../dist/assets/data.json")["galery"]
+    each folder in Object.keys(galeryData)
+        each folderChild in Object.keys(galeryData[folder])
+            - const n = Math.floor(Math.random() * galeryData[folder][folderChild].length)
             - const index = n + 1
-            - worksImagesGalery.push({image : galery[folder][folderChild][n],alt :"Trabajo realizado Nº " + index + " de la galería"})
+            - worksImagesGalery.push({image : galeryData[folder][folderChild][n],alt :"Trabajo realizado Nº " + index + " de la galería"})
     each item in worksImagesGalery 
         img.works__image(src=item.image,alt=item.alt,loading="lazy")
 
-//- https://res.cloudinary.com/dzur9okbf/image/upload/v1628636508/styles-and-designs-wem/Melamine/Cocina/IMG_20200807_183116_e3xuza.jpg
 block prepend head 
     +metaData({
-        description : "Encuentra los mejores muebles de melamine con acabados de alta calidad. \nAquí en Estilos & Diseños WEM",
+        description : "Encuentre los mejores muebles de melamine con acabados de alta calidad. \nAquí en Estilos & Diseños WEM",
         image: htmlWebpackPlugin.options.data.MAINIMAGE,
         keywords: ["muebles","melamine","drywall","estilos","diseños","wem"],
         canonical: ""
@@ -26,20 +26,25 @@ block content
                 img.presentation__image(data-src=htmlWebpackPlugin.options.data.MAINIMAGE,alt="main image")
                 .presentation__text
                     h1(translate="no") Estilos & Diseños WEM
-                    p Tenemos los mejores muebles de Melamine, así como el mejor Drywall !!
+                    p Encuentre los mejores muebles de melamine con acabados de alta calidad.
             each item in main_data
                 a.presentation__box(href="/muebles-para-"+item.title.toLowerCase())
                     img.presentation__image(data-src=item.image,alt=item.title,loading="lazy")
                     h2.presentation__title Fabricamos 
                         span.presentation__title-block Muebles para #{item.title}
-    section.container.furnitures
-        h2.furnitures__title#mejores-productos Nuestros mejores productos
-        .furnitures__box
-            each page in pages 
-                +cardArticle(page)
-    section.container.works
-        h2.works__title#trabajos-realizados Trabajos Realizados
-        .works__box
-            .works-grid
-                +worksGalery()
-            a.works__button(href="/galery") Ver más
+        div.container.tagList-box
+            ul.tagList 
+                li: a.tag-link(href="/melamine") Melamine
+                li: a.tag-link(href="/drywall") Drywall
+                li: a.tag-link(href="/granito") Granito
+        section.container.furnitures
+            h2.furnitures__title#mejores-productos Nuestros mejores productos
+            .furnitures__box
+                each page in pages
+                    +cardArticle(page)
+        section.container.works
+            h2.works__title#trabajos-realizados Trabajos Realizados
+            .works__box
+                .works-grid
+                    +worksGalery()
+                a.works__button(href="/galery") Ver más

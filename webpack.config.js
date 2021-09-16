@@ -44,6 +44,25 @@ const furnituresPages = readdirSync(
   });
 });
 
+const tagsPages = readdirSync(
+  path.join(__dirname, "/src/views/pages/tags/")
+).map((item) => {
+  return new HtmlWebpackPlugin({
+    template: "./src/views/pages/tags/" + item,
+    data: templateData,
+    filename: item.replace(".pug", ".html"),
+    chunks: ["app", "tag"],
+    minify: minifyHtmlOptions,
+  });
+});
+
+const rules = [
+  require("./webpack/ruleForJavaScript"),
+  require("./webpack/ruleForPug"),
+  require("./webpack/ruleForScssAndCss"),
+  require("./webpack/ruleForImages"),
+];
+
 module.exports = {
   entry: {
     app: {
@@ -62,6 +81,10 @@ module.exports = {
       import: "./src/js/furniture.js",
       filename: fileProduction(),
     },
+    tag: {
+      import: "./src/js/tag.js",
+      filename: fileProduction(),
+    },
   },
   output: {
     filename:
@@ -75,62 +98,7 @@ module.exports = {
       ? require("./webpack/dev-server.config")
       : undefined,
 
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        use: [
-          {
-            loader: "pug-loader",
-            options: {
-              pretty: false,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(sa|sc|c)ss/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              url: false,
-            },
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              implementation: require("postcss"),
-              postcssOptions: {
-                plugins: [["autoprefixer", {}]],
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require("node-sass"),
-              sassOptions: { fiber: false },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(jpeg|jpg|png|svg|gif)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "images/[name].[ext]",
-              outputPath: "assets/",
-              useRelativePath: true,
-            },
-          },
-        ],
-      },
-    ],
-  },
+  module: { rules },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -154,10 +122,18 @@ module.exports = {
       minify: minifyHtmlOptions,
     }),
     ...furnituresPages,
+    ...tagsPages,
     new HtmlWebpackPlugin({
       template: "./src/views/pages/google55eafdcb0711a918.pug",
       filename: "google55eafdcb0711a918.html",
       chunks: [],
+      minify: minifyHtmlOptions,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/views/pages/404.pug",
+      filename: "404.html",
+      chunks: ["app"],
+      data: templateData,
       minify: minifyHtmlOptions,
     }),
     new MiniCssExtractPlugin({

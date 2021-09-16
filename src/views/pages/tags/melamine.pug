@@ -1,0 +1,20 @@
+extends ../../layouts/main.pug
+include ../../components/card-article.pug
+
+block content 
+    main
+        .container
+            h1 Muebles de Melamine
+            p ¿Quieres tener un elegante y precioso mueble de Melamine en tu casa? Si es así , nosotros tenemos los mejores estilos y diseños para que usted elija dentro de una gran variedad, en nuestra 
+                a.link(href="#lista-de-muebles-de-melamine") lista de muebles
+        -const pagesByTag = require("../../../../scripts/pages.json")["pagesByTag"]["Melamine"]
+        section.container
+            h2#lista-de-muebles-de-melamine Tipos de muebles de melamine
+            p Listado de tipos de muebles hechos con melamine
+            .miniGalery-grid 
+                each pageData in pagesByTag
+                    +cardArticle({
+                        title: pageData.title,
+                        description: pageData.description,
+                        link:pageData.link,
+                        image:pageData.image})

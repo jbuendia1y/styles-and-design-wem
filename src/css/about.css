@@ -1,12 +1,69 @@
-.about {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+section h2::before {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 2.5px;
+
+  background-color: #212121;
+  margin-bottom: 5px;
 }
 
-.about__paragraph-strong {
-  display: block;
+.about {
+  position: relative;
+}
+
+.about__text {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+
+  text-align: center;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about__title {
+  text-shadow: 1.25px 1.25px 2px black;
+  font-size: 40px;
+  margin: 0 0 5px 0;
+}
+
+.about__paragraph {
+  font-weight: bold;
+  line-height: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.about__image {
+  position: relative;
+  max-height: 350px;
+  filter: brightness(0.65);
+}
+
+.about__image-w {
+  max-width: 100%;
+  max-height: inherit;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__logo {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+
+  mix-blend-mode: multiply;
+  filter: brightness(1.1);
+
+  max-width: 100px;
 }
 
 .about__map {
@@ -14,11 +71,4 @@
   margin: 0 auto;
 
   max-width: 100%;
-}
-
-@media screen and (min-width: 900px) {
-  .about {
-    flex-direction: row;
-    align-items: center;
-  }
 }
