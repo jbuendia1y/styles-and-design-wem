@@ -6,9 +6,10 @@
   "scripts": {
     "start": "npm run build",
     "dev": "npm run main-script && webpack-dev-server --mode development",
-    "build": "NODE_ENV=production npm run main-script && NODE_ENV=production webpack --mode production",
+    "build": "NODE_ENV=production npm run main-script && NODE_ENV=production webpack --mode production && npm run sitemap",
     "main-script": "node scripts/index.js",
-    "clear": "node ./scripts/clear-files-for-production.js"
+    "clear": "node ./scripts/clear-files-for-production.js",
+    "sitemap": "node ./scripts/generate-sitemap.js"
   },
   "keywords": [],
   "author": "Joaquín Buendía",
